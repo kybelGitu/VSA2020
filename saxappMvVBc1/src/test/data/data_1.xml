@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- trivialny -->
+<studium>
+    <zameranie>
+        <predmet rocnik="Bc-1">
+            <nazov>VSA</nazov>
+            <prednasajuci> 
+                <meno>Mrkvicka</meno>
+                <email>XY</email>
+            </prednasajuci>
+        </predmet>
+    </zameranie>   
+</studium>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- neresetovany semester -->
+<studium>
+    <zameranie>
+        <predmet rocnik="Bc-1" >
+            <nazov>XY</nazov>
+        </predmet>
+        <nazov>XY</nazov>
+        <predmet rocnik="Bc-1" >
+            <prednasajuci> 
+                <meno>Mrkvicka</meno>
+            </prednasajuci>
+        </predmet>                
+    </zameranie> 
+
+    <zameranie>
+        <predmet rocnik="Bc-1">
+            <nazov>VSA</nazov>
+            <prednasajuci> 
+                <meno>Mrkvicka</meno>
+            </prednasajuci>
+        </predmet>
+    </zameranie>   
+  
+</studium>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- dva predmety z nazvom zamerania -->
+<studium>
+    <zameranie>
+        <nazov>XY</nazov>
+        <predmet rocnik="Bc-1">
+            <prednasajuci> 
+                <meno>Mrkvicka</meno>
+            </prednasajuci>
+            <nazov>VSA</nazov>
+        </predmet>
+        <predmet rocnik="Bc-1">
+           <prednasajuci> 
+                <meno>Mrkvicka</meno>
+            </prednasajuci>
+            <nazov>OOP</nazov>
+        </predmet>
+    </zameranie>   
+</studium>

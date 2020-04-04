@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--názvy prednášok v letnom semestri a mená ich prednášajúcich-->
+<studium>
+    <zameranie>
+        <predmet rocnik="Bc-1" >
+            <nazov>XY</nazov>
+        </predmet>
+        <predmet rocnik="Bc-1" >
+            <prednasajuci> 
+                <meno>Mrkvicka</meno>
+            </prednasajuci>
+        </predmet>                
+    </zameranie> 
+</studium>

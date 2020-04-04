@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--predmet bez nazvu-->
+<studium>
+    <zameranie>
+        <predmet>
+            <prednasajuci> 
+                <meno>Mrkvicka</meno>
+            </prednasajuci>
+            <nazov>XY</nazov>
+        </predmet>
+        <predmet rocnik="Bc-1">
+            <prednasajuci> 
+                <meno>Mrkvicka</meno>
+            </prednasajuci>
+        </predmet>
+    </zameranie> 
+      
+    <zameranie>
+        <nazov>XY</nazov>
+        <predmet rocnik="Bc-1" >
+            <nazov>VSA</nazov>
+            <prednasajuci>
+                <meno>Mrkvicka</meno>
+            </prednasajuci>
+        </predmet>
+    </zameranie>   
+</studium>

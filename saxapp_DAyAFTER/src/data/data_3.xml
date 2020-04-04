@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- nazov zamerania a nazov predmetu za -->
+<studium>
+    <zameranie>
+        <nazov>XY</nazov>
+        <predmet rocnik="Bc-1">
+            <prednasajuci> 
+                <meno>Mrkvicka</meno>
+                <email>XY</email>
+            </prednasajuci>
+            <nazov>VSA</nazov>
+        </predmet>
+    </zameranie>   
+</studium>
