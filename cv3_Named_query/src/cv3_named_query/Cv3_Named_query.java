@@ -9,15 +9,27 @@ import entities.Osoba;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 /**
  * <ol>
- *  <li><b> u1_vypisOs </b> - u1 - vypisanie vsetkych osob </li>
- *  <li><b> findByMeno  </b> - u1 - vyhľadá osobu podľa mena.  </li>
+     * <li>uloha
+     *  <ol>
+     *   <li><b> u1_vypisOs </b> - u1 - vypisanie vsetkych osob </li>
+     *   <li><b> findByMeno  </b> - u1 - vyhľadá osobu podľa mena.  </li>
+     *  </ol>
+     * </li>
+     * <li>
+     *  <ol>
+     *      <li>
+     * 
+     *      </li>
+     *  </ol>
+     * </li>
  * </ol>
  * 
- *
+ * 
  * @author vsa
  * 
 
@@ -38,13 +50,25 @@ public class Cv3_Named_query {
      */
     
     public static void main(String[] args) {
-        // TODO code application logic here
-        u1_vypisOs();
-        findByMeno("gargamel451");
+        //ULOHY 1
+        // pre nastavenie EM treba pouzit constructor
+        Cv3_Named_query cv3 = (new Cv3_Named_query());
+        cv3.u1_vypisOs();
+        Osoba hladana = findByMeno("gargamel451 '\n'");
+        if(hladana != null)
+            System.out.println("hladana osoba : '\n'"+ hladana.toString());
+        
+        cv3.setVahaIfNull();
+        //Check if all values are changed
+        cv3.u1_vypisOs();
+        //at end close Entity Manager
+        cv3.closeEM();
+
+        
         
     }
-    
-    static void  u1_vypisOs(){
+    //************************ulohy - DEF ************************
+     void  u1_vypisOs(){
         
         TypedQuery<Osoba> all = em.createNamedQuery("Osoba.findAll", Osoba.class);
            for (Osoba o: all.getResultList()) {
@@ -54,9 +78,27 @@ public class Cv3_Named_query {
     }
     
     static Osoba findByMeno(String meno){
-        Osoba o = (Osoba)em.createNamedQuery("Osoba.findByMeno", Osoba.class);
+        Osoba hladana = null;
+        TypedQuery<Osoba> TQ = em.createNamedQuery("Osoba.findByMeno", Osoba.class);
+        TQ.setParameter("meno", meno);
+        try {
+            hladana = TQ.getSingleResult();
+        } 
+        catch (Exception e) {
+            System.out.println("handled excception");
+           e.printStackTrace();
+            System.out.println("continued...");
+        }
         
-        return o;
+            
+        return hladana;
+    }
+      
+    void  setVahaIfNull(){
+        em.getTransaction().begin();
+        Query q   = em.createNamedQuery("Osoba.updateVaha");
+        System.out.println("reslut q " + q.executeUpdate());
+        em.getTransaction().commit();
     }
 
     /**
@@ -76,6 +118,10 @@ public class Cv3_Named_query {
         } finally {
             em.close();
         }
+    }
+    
+    public void closeEM(){
+        this.em.close();
     }
     
 }

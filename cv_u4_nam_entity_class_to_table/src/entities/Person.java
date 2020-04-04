@@ -28,9 +28,10 @@ import javax.persistence.Transient;
 @Entity
 //namapovanie triedy
 @Table(name = "T_OSOBA")
-@NamedQueries({
+@NamedQueries({//TODO : CHANGE TO NATIVE QUERY
     @NamedQuery(name = "Person.findAll", query = "SELECT p FROM Person p"),
     @NamedQuery(name = "Person.findById", query = "SELECT p FROM Person p WHERE p.id = :id"),
+    @NamedQuery(name = "Person.insertPerson", query = "insert into Person(name) values ('meno')  "),
 })
 public class Person implements Serializable {
     

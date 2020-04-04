@@ -31,7 +31,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Osoba.findByMeno", query = "SELECT o FROM Osoba o WHERE o.meno = :meno"),
     @NamedQuery(name = "Osoba.findByNarodena", query = "SELECT o FROM Osoba o WHERE o.narodena = :narodena"),
     @NamedQuery(name = "Osoba.findByVaha", query = "SELECT o FROM Osoba o WHERE o.vaha = :vaha"),
-    @NamedQuery(name = "Osoba.updateVaha", query = "UPDATE osoba set vaha = 80.0 where vaha is null")})
+    //vaha num with decimal part & point or added f->float
+    @NamedQuery(name = "Osoba.updateVaha", query = "UPDATE Osoba set vaha = 85f where vaha is null")})
+
+
+
+
 public class Osoba implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<knihkupectvo>
+    <meno>Panta Rhei</meno>
+    <kniha edicia="SciFi">
+        <cena>6.40</cena>
+        <autor>Isaac Asimov</autor>
+        <meno>Nadacia</meno>        
+    </kniha>
+    <kniha edicia="Stopy">
+        <meno>Vinetou 1</meno>        
+        <cena>11.95</cena>
+        <autor>K. May</autor>
+    </kniha>
+    <kniha edicia="Stopy">
+        <meno>Vinetou 2</meno>        
+        <cena>8.90</cena>
+        <autor>K. May</autor>
+    </kniha>
+    <kniha edicia="SciFi">
+        <cena>3.80</cena>
+        <autor>George Orwell</autor>
+        <meno>Zvieracia farma</meno>        
+    </kniha>
+    <kniha>
+        <autor>John Steinbeck</autor>
+        <meno>Na plecharni</meno>        
+    </kniha>
+</knihkupectvo>

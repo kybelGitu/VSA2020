@@ -35,7 +35,7 @@ public class Cv2_u4_nam_entity_class_to_table {
     public Cv2_u4_nam_entity_class_to_table() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("cv2_u4_nam_entity_class_to_tablePU");
         this.em = emf.createEntityManager();
-        showAllPersons();
+
     }
 
     /**
@@ -55,6 +55,7 @@ public class Cv2_u4_nam_entity_class_to_table {
         if(p!= null){
             System.out.println("ul6: hladana ososba: " + p.toString());
         }
+        
     }
 
     /**
@@ -83,10 +84,11 @@ public class Cv2_u4_nam_entity_class_to_table {
     }
 
     Long addPerson(String meno) {
+        //NEPOUZIT PERSIST dorobit
         em.getTransaction().begin();
         Person newPerson = new Person(meno);
-        em.persist(newPerson);
-        em.flush();
+        Query q = em.createNamedQuery("Person.insertPerson");
+        q.getParameter(meno);
         em.getTransaction().commit();
         return newPerson.getId();
 //        
