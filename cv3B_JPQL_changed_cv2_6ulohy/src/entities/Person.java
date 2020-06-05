@@ -31,10 +31,18 @@ import javax.persistence.Transient;
 @Entity
 //namapovanie triedy
 @Table(name = "OSOBA")
+//@Table(name = "OSOBA_3cv_ul2")//for ul2 second part created new project
+
+
 @NamedQueries({
     @NamedQuery(name = "Person.findAll", query = "SELECT p FROM Person p"),
     @NamedQuery(name = "Person.findById", query = "SELECT p FROM Person p WHERE p.id = :id"),
+    @NamedQuery(name = "Person.findByMeno", query = "SELECT p FROM Person p WHERE p.name = :meno"),
     @NamedQuery(name = "Person.countAll", query = "SELECT count(p) FROM Person p"),
+    @NamedQuery(name = "Person.countNoNamed", query = "SELECT count(p) FROM Person p where p.name = null"),
+    @NamedQuery(name = "Person.theBig", query = "SELECT p  FROM Person p  where p.weight = (select max(q.weight) from Person q)"),
+//    @NamedQuery(name = "Person.theBig", query = "select max(p.weight) from Person p"),
+    
     
 })
 public class Person implements Serializable {

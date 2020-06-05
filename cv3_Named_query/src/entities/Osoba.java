@@ -10,6 +10,8 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -32,7 +34,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Osoba.findByNarodena", query = "SELECT o FROM Osoba o WHERE o.narodena = :narodena"),
     @NamedQuery(name = "Osoba.findByVaha", query = "SELECT o FROM Osoba o WHERE o.vaha = :vaha"),
     //vaha num with decimal part & point or added f->float
-    @NamedQuery(name = "Osoba.updateVaha", query = "UPDATE Osoba set vaha = 85f where vaha is null")})
+    @NamedQuery(name = "Osoba.updateVaha", query = "UPDATE Osoba set vaha = 85f where vaha is null"),
+//    @NamedQuery(name = "Osoba.insertOsoba", query = "INSERT INTO Osoba (id, meno, narodena, vaha) VALUES (?,?,?,?)"),
+//    @NamedQuery(name = "Osoba.LastInsertedId", query = "SELECT LAST_INSERT_ID();"),
+})
 
 
 
@@ -43,6 +48,7 @@ public class Osoba implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.AUTO)   
     private Long id;
     @Column(name = "MENO")
     private String meno;

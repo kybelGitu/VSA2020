@@ -14,8 +14,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.Transient;
@@ -28,17 +26,13 @@ import javax.persistence.Transient;
 @Entity
 //namapovanie triedy
 @Table(name = "T_OSOBA")
-@NamedQueries({//TODO : CHANGE TO NATIVE QUERY
-    @NamedQuery(name = "Person.findAll", query = "SELECT p FROM Person p"),
-    @NamedQuery(name = "Person.findById", query = "SELECT p FROM Person p WHERE p.id = :id"),
-    @NamedQuery(name = "Person.insertPerson", query = "insert into Person(name) values ('meno')  "),
-})
+
 public class Person implements Serializable {
     
 /////////////*************P R O P E R T I E S *************\\\\\\\\\\\\
 private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)//pri auto nejde vkladat null value
     private Long id;
     @Column(name = "meno")
     private String name;
