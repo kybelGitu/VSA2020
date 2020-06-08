@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns0:adresar  xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+              xmlns:ns0='http://xml.netbeans.org/schema/AdresarSchema'
+              xsi:schemaLocation='http://xml.netbeans.org/schema/AdresarSchema AdresarSchema.xsd'>
+    <ns0:osoba>
+        <ns0:meno>Mrkvicka</ns0:meno>
+        <ns0:bydlisko>Praha</ns0:bydlisko>
+    </ns0:osoba>
+    <ns0:osoba ns0:gen="muz">
+        <ns0:meno>Porik</ns0:meno>
+        <ns0:bydlisko>Trnava</ns0:bydlisko>
+    </ns0:osoba>
+    <ns0:osoba ns0:gen="zena">
+        <ns0:bydlisko>Trnava</ns0:bydlisko>
+        <ns0:meno>Porikova</ns0:meno>
+    </ns0:osoba>
+    <ns0:osoba>
+        <ns0:meno>Mrkvickova</ns0:meno>
+<!--        <ns0:bydlisko>Kosice</ns0:bydlisko> -->
+        <ns0:email>am@zelovoc.sk</ns0:email>
+    </ns0:osoba>
+</ns0:adresar>
+
