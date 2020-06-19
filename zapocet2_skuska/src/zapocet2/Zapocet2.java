@@ -18,21 +18,21 @@ public class Zapocet2 {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("zapocet2PU");
         EntityManager em = emf.createEntityManager();
 
-        novyPredmet(em, "OOP", "Hrach" );
+        novyPredmet(em, "OOP", "Hrach");
         novyPredmet(em, "VSA", "Mrkva");
         novyPredmet(em, "ASOS", "Mrkva");
-
+        Zapocet2.novyPredmet(em, "P4", "Igor");
         System.out.println("Mrkvov uvazok: " + pocetPrednasok(em, "Mrkva"));    // vypise 2  
 
         Osoba vyuc = prednasajuci(em, "VSA");
-        System.out.println("Prednasajuci VSA: " + vyuc);              
+        System.out.println("Prednasajuci VSA: " + vyuc);
     }
 
     /* Vrati profesora prednasajuceho predmet s danym kodom
      * Ak kod nie je zadany alebo predmet s danym kodom neexistuje vrati null.
      */
     public static Osoba prednasajuci(EntityManager em, String kodPredmetu) throws Exception {
-        if(kodPredmetu == null || kodPredmetu == ""){
+        if (kodPredmetu == null || kodPredmetu == "") {
             return null;
         }
         Query q = em.createNamedQuery("predmet.findByKod");
@@ -50,7 +50,7 @@ public class Zapocet2 {
      * Pozn. Metoda sa moze spolahnut na to, ze v DB je meno osoby jedinecne
      */
     public static int pocetPrednasok(EntityManager em, String meno) throws Exception {
-        if(meno == null || meno ==""){
+        if (meno == null || meno == "") {
             return 0;
         }
         try {
@@ -58,14 +58,13 @@ public class Zapocet2 {
             q.setParameter("meno", meno);
             Osoba o = (Osoba) q.getSingleResult();
             return o.getPrednasky().size();
-            
-            
+
         } catch (NoResultException e) {
             return 0;
-        }catch (Exception e) {
+        } catch (Exception e) {
             return 0;
         }
-        
+
     }
 
     /*Vytvori novy predmet.
@@ -85,45 +84,50 @@ public class Zapocet2 {
      *   Pozn. metoda sa moze spolahnut na to, ze v DB je meno osoby jedinecne.
      *
      * Navratova hodnota: 
-     *   false: ak predmet uz existoval alebo kod predmetu nebol zadany. 
+     *   false: ak predmet uz existoval alebo kod predmetu nebol zadany. . 
      *   true:  inak. 
      */
     public static boolean novyPredmet(EntityManager em, String kodPredmetu, String meno) throws Exception {
-        boolean result = true;
+        boolean result = false;
+        if (kodPredmetu == null || kodPredmetu == "") {
+//            kod predmetu nebol zadany. 
+            return false;
+        }
         try {
-            em.getTransaction().begin();
-            
+
             Query q = em.createNamedQuery("predmet.findByKod");
             q.setParameter("kod", kodPredmetu);
             Predmet p = new Predmet();
-                try {
-                     p = (Predmet) q.getSingleResult();
-                     return false;
-                }catch(NoResultException e){
-                    p.setKod(kodPredmetu);
-                    em.persist(p);
-                    if(meno != null){
-                        Query q2 = em.createNamedQuery("osoba.findByMeno");
-                        q2.setParameter("meno", meno);
-                        Osoba o = new Osoba();
-                            try {
-                                 o = (Osoba) q2.getSingleResult();
-                            }catch(NoResultException e2){
-                                o.setMeno(meno);
-                                em.persist(o);
-                            }
-                        catch (Exception e2) {
-                            return false;
-                        }
-                        em.getTransaction().commit();
-                    }
-                    else 
+            try {
+                //predmet exists, end
+                p = (Predmet) q.getSingleResult();
+                return false;
+            } catch (NoResultException e) {
+                em.getTransaction().begin();
+                p.setKod(kodPredmetu);
+                if (meno != null) {
+                    Query q2 = em.createNamedQuery("osoba.findByMeno");
+                    q2.setParameter("meno", meno);
+                    Osoba o = new Osoba();
+                    try {
+                        o = (Osoba) q2.getSingleResult();
+                    } catch (NoResultException e2) {
+                        o.setMeno(meno);
+                        em.persist(o);
+                    } catch (Exception e2) {
+                        em.close();
                         return false;
+                    }
+                    o.getPrednasky().add(p);
+                    p.setProfesor(o);
                 }
-                catch (Exception e) {
-                    return false;
-                }
-                return result;                
+                em.persist(p);
+                em.getTransaction().commit();
+                return true;
+            } catch (Exception e) {
+                return false;
+            }
+
         } catch (Exception e) {
             return false;
         }
